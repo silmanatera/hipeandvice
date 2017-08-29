@@ -1,0 +1,74 @@
+div.uploader input {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border: medium none;
+    cursor: default;
+    float: right;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+}
+
+div.uploader span.filename {
+    border-right: 1px solid #bbb;
+    color: #777;
+    font-size: 11px;
+}
+div.uploader span.filename {
+    cursor: default;
+    display: block;
+    float: left;
+    height: 24px;
+    line-height: 24px;
+    margin: 2px 0 2px 2px;
+    overflow: hidden;
+    padding: 0 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 85px;
+}
+
+div.uploader span.action {
+    background-color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    text-shadow: 0 1px 0 #fff;
+}
+div.uploader span.action {
+    background-position: right -409px;
+    cursor: pointer;
+    display: inline;
+    float: left;
+    height: 28px;
+    line-height: 28px;
+    overflow: hidden;
+    text-align: center;
+    width: 82px;
+}
+
+.input-group-addon, .input-group-btn, .input-group .form-control{
+    display: table-cell;
+}
+
+.fileinput-new.input-group .btn-file, .fileinput-new .input-group .btn-file{
+    border-radius: 0 4px 4px 0;
+}
+
+.fileinput-exists .fileinput-new, .fileinput-new .fileinput-exists{
+    display: none;
+}
+
+.btn-file > input {
+    cursor: pointer;
+    direction: ltr;
+    font-size: 23px;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+}

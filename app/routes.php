@@ -2,16 +2,22 @@
 
 /*
 |--------------------------------------------------------------------------
-| Application Routes
+| 								Home
 |--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the Closure to execute when that URI is requested.
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+// Retorna fomulario de login 
+Route::get('/login','HomeController@form_login');
+// Valida el ingreso del usuario
+Route::post('validate-login', 'HomeController@login_validate');
+
+/*
+|--------------------------------------------------------------------------
+| 								Admin
+|--------------------------------------------------------------------------
+|
+*/
+
+// Retorna el inicio de admin
+Route::get('/admin','HomeController@home_admin');
