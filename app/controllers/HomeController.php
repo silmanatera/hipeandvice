@@ -33,6 +33,7 @@ class HomeController extends BaseController {
      ************************************************************************/
 	public function blog(){
 		return View::make('home/blog');
+	}
 
 	/************************************************************************
      *   Funcion: 		home_admin
