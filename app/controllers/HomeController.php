@@ -28,6 +28,14 @@ class HomeController extends BaseController {
 	}
 
 	/************************************************************************
+     *   Funcion: 		policy
+     *   Descripcion:   Redirecciona a la seccion politicas de la pagina
+     ************************************************************************/
+	public function policy(){
+		return View::make('home/policy');
+	}
+
+	/************************************************************************
      *   Funcion: 		blog
      *   Descripcion:   Redirecciona a la seccion blog de la pagina
      ************************************************************************/
