@@ -12,38 +12,6 @@ class HomeController extends BaseController {
 	}
 
 	/************************************************************************
-     *   Funcion: 		index
-     *   Descripcion:   Redirecciona al home de la pagina
-     ************************************************************************/
-	public function index(){
-		return View::make('home/home');
-	}
-
-	/************************************************************************
-     *   Funcion: 		about
-     *   Descripcion:   Redirecciona a la seccion about de la pagina
-     ************************************************************************/
-	public function about(){
-		return View::make('home/about');
-	}
-
-	/************************************************************************
-     *   Funcion: 		policy
-     *   Descripcion:   Redirecciona a la seccion politicas de la pagina
-     ************************************************************************/
-	public function policy(){
-		return View::make('home/policy');
-	}
-
-	/************************************************************************
-     *   Funcion: 		blog
-     *   Descripcion:   Redirecciona a la seccion blog de la pagina
-     ************************************************************************/
-	public function blog(){
-		return View::make('home/blog');
-	}
-
-	/************************************************************************
      *   Funcion: 		home_admin
      *   Descripcion:   Redirecciona al inicio de admin
      ************************************************************************/
