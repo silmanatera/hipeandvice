@@ -1,0 +1,9 @@
+#menu .glyphicon.glyphicon-chevron-down {
+    float: right;
+    margin-right: 15px;
+    padding-top: 3px;
+}
+
+.bg-dark{
+	color: #000 !important;
+}
