@@ -25,6 +25,8 @@ Route::get('/detail','HomeController@detail');
 Route::get('/blogdetail','HomeController@detailblog');
 // Vista de LookBook
 Route::get('/lookbook','HomeController@lookbook');
+// Vista de LookBook
+Route::get('/shopbycolor','HomeController@shopbycolor');
 
 /*
 |--------------------------------------------------------------------------

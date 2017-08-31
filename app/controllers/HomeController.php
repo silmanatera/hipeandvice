@@ -68,6 +68,14 @@ class HomeController extends BaseController {
 	}
 
 	/************************************************************************
+     *   Funcion: 		shopbycolor
+     *   Descripcion:   Redirecciona a la seccion shopbycolor
+     ************************************************************************/
+	public function shopbycolor(){
+		return View::make('home/shopbycolor');
+	}
+
+	/************************************************************************
      *   Funcion: 		home_admin
      *   Descripcion:   Redirecciona al inicio de admin
      ************************************************************************/
