@@ -92,6 +92,14 @@ class HomeController extends BaseController {
 	}
 
 	/************************************************************************
+     *   Funcion: 		terms
+     *   Descripcion:   Redirecciona a la seccion terms
+     ************************************************************************/
+	public function terms(){
+		return View::make('home/terms');
+	}
+
+	/************************************************************************
      *   Funcion: 		home_admin
      *   Descripcion:   Redirecciona al inicio de admin
      ************************************************************************/

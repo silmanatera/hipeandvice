@@ -31,6 +31,8 @@ Route::get('/shopbycolor','HomeController@shopbycolor');
 Route::get('/shop','HomeController@shop');
 // Vista de cart
 Route::get('/cart','HomeController@cart');
+// Vista de terms
+Route::get('/terms','HomeController@terms');
 
 /*
 |--------------------------------------------------------------------------
