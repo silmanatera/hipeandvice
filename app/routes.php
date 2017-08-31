@@ -29,6 +29,8 @@ Route::get('/lookbook','HomeController@lookbook');
 Route::get('/shopbycolor','HomeController@shopbycolor');
 // Vista de shop
 Route::get('/shop','HomeController@shop');
+// Vista de cart
+Route::get('/cart','HomeController@cart');
 
 /*
 |--------------------------------------------------------------------------

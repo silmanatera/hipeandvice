@@ -84,6 +84,14 @@ class HomeController extends BaseController {
 	}
 
 	/************************************************************************
+     *   Funcion: 		cart
+     *   Descripcion:   Redirecciona a la seccion cart
+     ************************************************************************/
+	public function cart(){
+		return View::make('home/cart');
+	}
+
+	/************************************************************************
      *   Funcion: 		home_admin
      *   Descripcion:   Redirecciona al inicio de admin
      ************************************************************************/
