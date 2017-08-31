@@ -76,6 +76,14 @@ class HomeController extends BaseController {
 	}
 
 	/************************************************************************
+     *   Funcion: 		shop
+     *   Descripcion:   Redirecciona a la seccion shop
+     ************************************************************************/
+	public function shop(){
+		return View::make('home/shop');
+	}
+
+	/************************************************************************
      *   Funcion: 		home_admin
      *   Descripcion:   Redirecciona al inicio de admin
      ************************************************************************/
