@@ -19,8 +19,10 @@ Route::get('/about','HomeController@about');
 Route::get('/blog','HomeController@blog');
 // Vista de politicas
 Route::get('/policy','HomeController@policy');
-// Vista de politicas
+// Vista de detalle del producto
 Route::get('/detail','HomeController@detail');
+// Vista de detalle del blog
+Route::get('/blogdetail','HomeController@detailblog');
 
 /*
 |--------------------------------------------------------------------------
