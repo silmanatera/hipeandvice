@@ -23,6 +23,8 @@ Route::get('/policy','HomeController@policy');
 Route::get('/detail','HomeController@detail');
 // Vista de detalle del blog
 Route::get('/blogdetail','HomeController@detailblog');
+// Vista de LookBook
+Route::get('/lookbook','HomeController@lookbook');
 
 /*
 |--------------------------------------------------------------------------

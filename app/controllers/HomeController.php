@@ -60,6 +60,14 @@ class HomeController extends BaseController {
 	}
 
 	/************************************************************************
+     *   Funcion: 		lookbook
+     *   Descripcion:   Redirecciona a la seccion lookbook
+     ************************************************************************/
+	public function lookbook(){
+		return View::make('home/lookbook');
+	}
+
+	/************************************************************************
      *   Funcion: 		home_admin
      *   Descripcion:   Redirecciona al inicio de admin
      ************************************************************************/
