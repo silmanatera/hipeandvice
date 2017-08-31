@@ -44,6 +44,14 @@ class HomeController extends BaseController {
 	}
 
 	/************************************************************************
+     *   Funcion: 		detail
+     *   Descripcion:   Redirecciona a la seccion detalles de un producto
+     ************************************************************************/
+	public function detail(){
+		return View::make('home/detail');
+	}
+
+	/************************************************************************
      *   Funcion: 		home_admin
      *   Descripcion:   Redirecciona al inicio de admin
      ************************************************************************/

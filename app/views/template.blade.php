@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap-reboot.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/mainfront.css')}}">
-    
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed" rel="stylesheet">   
   </head>
 
   <body>
