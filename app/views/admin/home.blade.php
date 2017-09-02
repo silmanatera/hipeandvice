@@ -8,21 +8,27 @@
           <div class="inner bg-light lter">
               <div class="col-lg-12">
                 <h1>Hype & Vice Dashboard</h1>
-
+                
                 <!-- Cuando se haga click se filtra por compras aprobadas y rechazadas -->
                 <div class="text-center">
                   <a class="quick-btn" href="#" style="font-size: 13px">
                     <i class="glyphicon glyphicon-plus"></i>
                     <span>approved shopping</span>
-                    <span class="label label-success">456</span>
+                    <span class="label label-success">{{Purchase::get_total_approved()}}</span>
                   </a>
                   <a class="quick-btn" href="#" style="font-size: 13px">
                     <i class="glyphicon glyphicon-minus"></i>
                     <span>rejected shopping</span>
-                    <span class="label label-warning">20</span>
+                    <span class="label label-warning">{{Purchase::get_total_rejected()}}</span>
                   </a>
                 </div>
-
+                <p>
+                    @if(Session::get('success'))
+                        <div class="alert alert-success" role="alert">
+                          <strong>¡Exito! </strong>{{Session::get('success')}}
+                        </div>
+                    @endif
+                </p> 
                 <div class="col-lg-12">
                   <div class="box">
                       <header>
@@ -37,6 +43,7 @@
                           </div>
                       </header>
                       <div id="stripedTable" class="table-responsive body collapse in">
+                        @if(isset($list))  
                           <table class="table table-striped">
                               <thead>
                                   <tr>
@@ -49,150 +56,39 @@
                                       <th>Qty</th>
                                       <th>Action</th>
                                   </tr>
-                              </thead>
+                              </thead>  
                               <tbody>
+                              @foreach($list as $purchase)
                                   <tr>
-                                      <td>1</td>
-                                      <td>Jill</td>
-                                      <td>Smith</td>
-                                      <td>smith@gamil.com</td>
-                                      <td>California</td>
-                                      <td>Product 1</td>
-                                      <td>5</td>
+                                      <td>{{$purchase->id}}</td>
+                                      <td>{{$purchase->first_name}}</td>
+                                      <td>{{$purchase->last_name}}</td>
+                                      <td>{{$purchase->email}}</td>
+                                      <?php $school = College::find($purchase->college_id)->first()->name; ?>
+                                      <td>{{$school}}</td>
+                                      <td>{{$purchase->title}}</td>
+                                      <td>{{$purchase->cantidad}}</td>
                                       <td>
-                                        <a class="btn btn-success btn-sm close-box" title="approved">
+                                        <a class="btn btn-success btn-sm close-box" href="<?=URL::to('/admin/change/1/'.$purchase->id)?>" title="approved">
                                           <i class="glyphicon glyphicon-ok"></i>
                                         </a>
-                                        <a class="btn btn-danger btn-sm close-box" title="remove">
+                                        <a class="btn btn-danger btn-sm close-box" href="<?=URL::to('/admin/change/2/'.$purchase->id)?>" title="remove">
                                           <i class="glyphicon glyphicon-remove"></i>
                                         </a>
                                       </td>
                                   </tr>
-                                  <tr>
-                                      <td>2</td>
-                                      <td>Jill</td>
-                                      <td>Smith</td>
-                                      <td>smith@gamil.com</td>
-                                      <td>California</td>
-                                      <td>Product 1</td>
-                                      <td>5</td>
-                                      <td>
-                                        <a class="btn btn-success btn-sm close-box" title="approved">
-                                          <i class="glyphicon glyphicon-ok"></i>
-                                        </a>
-                                        <a class="btn btn-danger btn-sm close-box" title="remove">
-                                          <i class="glyphicon glyphicon-remove"></i>
-                                        </a>
-                                      </td>
-                                  </tr>
-                                  <tr>
-                                      <td>3</td>
-                                      <td>Jill</td>
-                                      <td>Smith</td>
-                                      <td>smith@gamil.com</td>
-                                      <td>California</td>
-                                      <td>Product 1</td>
-                                      <td>5</td>
-                                      <td>
-                                        <a class="btn btn-success btn-sm close-box" title="approved">
-                                          <i class="glyphicon glyphicon-ok"></i>
-                                        </a>
-                                        <a class="btn btn-danger btn-sm close-box" title="remove">
-                                          <i class="glyphicon glyphicon-remove"></i>
-                                        </a>
-                                      </td>
-                                  </tr>
-                                  <tr>
-                                      <td>4</td>
-                                      <td>Jill</td>
-                                      <td>Smith</td>
-                                      <td>smith@gamil.com</td>
-                                      <td>California</td>
-                                      <td>Product 1</td>
-                                      <td>5</td>
-                                      <td>
-                                        <a class="btn btn-success btn-sm close-box" title="approved">
-                                          <i class="glyphicon glyphicon-ok"></i>
-                                        </a>
-                                        <a class="btn btn-danger btn-sm close-box" title="remove">
-                                          <i class="glyphicon glyphicon-remove"></i>
-                                        </a>
-                                      </td>
-                                  </tr>
-                                  <tr>
-                                      <td>4</td>
-                                      <td>Jill</td>
-                                      <td>Smith</td>
-                                      <td>smith@gamil.com</td>
-                                      <td>California</td>
-                                      <td>Product 1</td>
-                                      <td>5</td>
-                                      <td>
-                                        <a class="btn btn-success btn-sm close-box" title="approved">
-                                          <i class="glyphicon glyphicon-ok"></i>
-                                        </a>
-                                        <a class="btn btn-danger btn-sm close-box" title="remove">
-                                          <i class="glyphicon glyphicon-remove"></i>
-                                        </a>
-                                      </td>
-                                  </tr>
-                                  <tr>
-                                      <td>4</td>
-                                      <td>Jill</td>
-                                      <td>Smith</td>
-                                      <td>smith@gamil.com</td>
-                                      <td>California</td>
-                                      <td>Product 1</td>
-                                      <td>5</td>
-                                      <td>
-                                        <a class="btn btn-success btn-sm close-box" title="approved">
-                                          <i class="glyphicon glyphicon-ok"></i>
-                                        </a>
-                                        <a class="btn btn-danger btn-sm close-box" title="remove">
-                                          <i class="glyphicon glyphicon-remove"></i>
-                                        </a>
-                                      </td>
-                                  </tr>
-                                  <tr>
-                                      <td>4</td>
-                                      <td>Jill</td>
-                                      <td>Smith</td>
-                                      <td>smith@gamil.com</td>
-                                      <td>California</td>
-                                      <td>Product 1</td>
-                                      <td>5</td>
-                                      <td>
-                                        <a class="btn btn-success btn-sm close-box" title="approved">
-                                          <i class="glyphicon glyphicon-ok"></i>
-                                        </a>
-                                        <a class="btn btn-danger btn-sm close-box" title="remove">
-                                          <i class="glyphicon glyphicon-remove"></i>
-                                        </a>
-                                      </td>
-                                  </tr>
+                              @endforeach    
                               </tbody> 
                           </table>
 
                           <nav aria-label="Page navigation" style="text-align: center">
                             <ul class="pagination">
-                              <li>
-                                <a href="#" aria-label="Previous">
-                                  <span aria-hidden="true">&laquo;</span>
-                                </a>
-                              </li>
-                              <li><a href="#">1</a></li>
-                              <li><a href="#">2</a></li>
-                              <li><a href="#">3</a></li>
-                              <li><a href="#">4</a></li>
-                              <li><a href="#">5</a></li>
-                              <li>
-                                <a href="#" aria-label="Next">
-                                  <span aria-hidden="true">&raquo;</span>
-                                </a>
-                              </li>
+                              {{$list->links()}}
                             </ul>
                           </nav>
+                        @endif  
                       </div>
+
                 </div>
               </div>
             </div>

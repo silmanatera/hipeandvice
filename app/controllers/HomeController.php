@@ -11,100 +11,102 @@ class HomeController extends BaseController {
 		return View::make('home/login');
 	}
 
-	/************************************************************************
-     *   Funcion: 		index
+    /************************************************************************
+     *   Funcion:       index
      *   Descripcion:   Redirecciona al home de la pagina
      ************************************************************************/
-	public function index(){
-		return View::make('home/home');
-	}
+    public function index(){
+        return View::make('home/home');
+    }
 
-	/************************************************************************
-     *   Funcion: 		about
+    /************************************************************************
+     *   Funcion:       about
      *   Descripcion:   Redirecciona a la seccion about de la pagina
      ************************************************************************/
-	public function about(){
-		return View::make('home/about');
-	}
+    public function about(){
+        return View::make('home/about');
+    }
 
-	/************************************************************************
-     *   Funcion: 		policy
+    /************************************************************************
+     *   Funcion:       policy
      *   Descripcion:   Redirecciona a la seccion politicas de la pagina
      ************************************************************************/
-	public function policy(){
-		return View::make('home/policy');
-	}
+    public function policy(){
+        return View::make('home/policy');
+    }
 
-	/************************************************************************
-     *   Funcion: 		blog
+    /************************************************************************
+     *   Funcion:       blog
      *   Descripcion:   Redirecciona a la seccion blog de la pagina
      ************************************************************************/
-	public function blog(){
-		return View::make('home/blog');
-	}
+    public function blog(){
+        return View::make('home/blog');
+    }
 
-	/************************************************************************
-     *   Funcion: 		detail
+    /************************************************************************
+     *   Funcion:       detail
      *   Descripcion:   Redirecciona a la seccion detalles de un producto
      ************************************************************************/
-	public function detail(){
-		return View::make('home/detail');
-	}
+    public function detail(){
+        return View::make('home/detail');
+    }
 
-	/************************************************************************
-     *   Funcion: 		detailblog
+    /************************************************************************
+     *   Funcion:       detailblog
      *   Descripcion:   Redirecciona a la seccion detalles de un blog
      ************************************************************************/
-	public function detailblog(){
-		return View::make('home/detailblog');
-	}
+    public function detailblog(){
+        return View::make('home/detailblog');
+    }
 
-	/************************************************************************
-     *   Funcion: 		lookbook
+    /************************************************************************
+     *   Funcion:       lookbook
      *   Descripcion:   Redirecciona a la seccion lookbook
      ************************************************************************/
-	public function lookbook(){
-		return View::make('home/lookbook');
-	}
+    public function lookbook(){
+        return View::make('home/lookbook');
+    }
 
-	/************************************************************************
-     *   Funcion: 		shopbycolor
+    /************************************************************************
+     *   Funcion:       shopbycolor
      *   Descripcion:   Redirecciona a la seccion shopbycolor
      ************************************************************************/
-	public function shopbycolor(){
-		return View::make('home/shopbycolor');
-	}
+    public function shopbycolor(){
+        return View::make('home/shopbycolor');
+    }
 
-	/************************************************************************
-     *   Funcion: 		shop
+    /************************************************************************
+     *   Funcion:       shop
      *   Descripcion:   Redirecciona a la seccion shop
      ************************************************************************/
-	public function shop(){
-		return View::make('home/shop');
-	}
+    public function shop(){
+        return View::make('home/shop');
+    }
 
-	/************************************************************************
-     *   Funcion: 		cart
+    /************************************************************************
+     *   Funcion:       cart
      *   Descripcion:   Redirecciona a la seccion cart
      ************************************************************************/
-	public function cart(){
-		return View::make('home/cart');
-	}
+    public function cart(){
+        return View::make('home/cart');
+    }
 
-	/************************************************************************
-     *   Funcion: 		terms
+    /************************************************************************
+     *   Funcion:       terms
      *   Descripcion:   Redirecciona a la seccion terms
      ************************************************************************/
-	public function terms(){
-		return View::make('home/terms');
-	}
+    public function terms(){
+        return View::make('home/terms');
+    }
+
 
 	/************************************************************************
      *   Funcion: 		home_admin
      *   Descripcion:   Redirecciona al inicio de admin
      ************************************************************************/
 	public function home_admin(){
-		return View::make('admin/home');
+        $list = Purchase::get_list();
+		return View::make('admin/home', array('list'=>$list));
 	}
 
 	/************************************************************************
@@ -112,6 +114,27 @@ class HomeController extends BaseController {
      *   Descripcion:   Validamos el inicio de sesion
      ************************************************************************/
 	public function login_validate(){
-		return Redirect::to('admin');
+		if(Auth::attempt(array('username' => Input::get('username'), 'password' => Input::get('password')), true)){
+
+            if (Auth::user()->type == 1 && Auth::user()->status == 1) {
+                return Redirect::to('admin');
+            }
+
+        }else{
+            Session::flash('danger', "Username or Password invalid.");
+            return Redirect::back();
+        }
 	}
+
+    /************************************************************************
+    *   Funcion: logout                                                    
+    *   Descripcion: Se encarga de desloguear al usuario.
+    *                                             
+    ************************************************************************/
+    protected function logout(){
+    
+        Auth::logout();
+       
+        return Redirect::to('/');
+    }
 }

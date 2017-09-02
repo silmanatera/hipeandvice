@@ -14,33 +14,46 @@
     <meta name="author" content="">
     
     <meta name="msapplication-TileColor" content="#5bc0de" />
-    <meta name="msapplication-TileImage" content="assets/img/metis-tile.png" />
+    <meta name="msapplication-TileImage" content="{{asset('assets/img/metis-tile.png')}}" />
     
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="assets/lib/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="{{asset('assets/lib/bootstrap/css/bootstrap.css')}}">
     
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="assets/lib/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="{{asset('assets/lib/font-awesome/css/font-awesome.css')}}">
     
     <!-- Metis core stylesheet -->
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="{{asset('assets/css/mainadmin.css')}}">
     
     <!-- metisMenu stylesheet -->
-    <link rel="stylesheet" href="assets/lib/metismenu/metisMenu.css">
+    <link rel="stylesheet" href="{{asset('assets/lib/metismenu/metisMenu.css')}}">
     
     <!-- onoffcanvas stylesheet -->
-    <link rel="stylesheet" href="assets/lib/onoffcanvas/onoffcanvas.css">
+    <link rel="stylesheet" href="{{asset('assets/lib/onoffcanvas/onoffcanvas.css')}}">
     
     <!-- animate.css stylesheet -->
-    <link rel="stylesheet" href="assets/lib/animate.css/animate.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/personal-styles.css">
+    <link rel="stylesheet" href="{{asset('assets/lib/animate.css/animate.css')}}">
 
-    <link rel="stylesheet/less" type="text/css" href="http://localhost/hipeandvice/public/assets/less/theme.less">
+
+        <link rel="stylesheet" href="{{asset('assets/css/jquery-ui.min.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/jquery-ui.theme.min.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/validationEngine.jquery.min.css')}}">
+
+        <link rel="stylesheet" href="{{asset('assets/lib/plupload/js/jquery.plupload.queue/css/jquery.plupload.queue.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/lib/jquery.gritter/css/jquery.gritter.css')}}">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/Uniform.js/2.1.2/themes/default/css/uniform.default.min.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/personalstyle.css')}}">
+
+                  
+        <link rel="stylesheet/less" type="text/css" href="{{asset('assets/less/theme.less')}}">
+
+      <link rel="stylesheet" type="text/css" href="{{asset('assets/css/personal-styles.css')}}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.js"></script>
 
 </head>
 
-@if(false)
+@if(Auth::check())
 <body class="  ">
     <!-- https://colorlib.com/polygon/metis/form-wysiwyg.html -->
     <div class="bg-dark dk" id="wrap">
@@ -68,7 +81,7 @@
                 </div>
                
                 <div class="btn-group">
-                    <a href="login.html" data-toggle="tooltip" data-original-title="Logout" data-placement="bottom"
+                    <a href="{{ URL::action('HomeController@logout') }}" data-toggle="tooltip" data-original-title="Logout" data-placement="bottom"
                        class="btn btn-metis-1 btn-sm">
                         <i class="glyphicon glyphicon-off"></i>
                     </a>
@@ -93,8 +106,8 @@
                             Blog <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">New Blog</a></li>
-                            <li><a href="#">List Blog</a></li>
+                            <li><a href="{{ URL::action('BlogController@form_new_blog') }}">New Blog</a></li>
+                            <li><a href="{{ URL::action('BlogController@list_blog') }}">List Blog</a></li>
                         </ul>
                     </li>
                     <li class='dropdown '>
@@ -102,8 +115,8 @@
                             College <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="form-general.html">New College</a></li>
-                            <li><a href="form-validation.html">List College</a></li>
+                            <li><a href="{{ URL::action('CollegeController@form_new_college') }}">New College</a></li>
+                            <li><a href="{{ URL::action('CollegeController@list_college') }}">List College</a></li>
                         </ul>
                     </li>
                     <li class='dropdown '>
@@ -111,8 +124,8 @@
                             Product <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="form-general.html">New Product</a></li>
-                            <li><a href="form-validation.html">List Products</a></li>
+                            <li><a href="{{ URL::action('ProductController@form_new_product') }}">New Product</a></li>
+                            <li><a href="{{ URL::action('ProductController@list_product') }}">List Products</a></li>
                         </ul>
                     </li>
                     <li class='dropdown '>
@@ -120,8 +133,8 @@
                             Category <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="form-general.html">New Category</a></li>
-                            <li><a href="form-validation.html">List Category</a></li>
+                            <li><a href="{{ URL::action('CategoryController@form_new_category') }}">New Category</a></li>
+                            <li><a href="{{ URL::action('CategoryController@list_category') }}">List Category</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -151,7 +164,7 @@
           </div>
           <div class="user-wrapper bg-dark">
               <a class="user-link" href="">
-                  <img class="media-object img-thumbnail user-img" alt="User Picture" src="assets/img/female.png">
+                  {{ HTML::image('assets/img/female.png','Logo',array('class'=>'media-object img-thumbnail user-img', 'alt'=>'User Picture')) }}
                   
               </a>
       
@@ -186,11 +199,11 @@
                   </a>
                   <ul class="collapse">
                    <li>
-                      <a href="new_blog.html">
+                      <a href="{{ URL::action('BlogController@form_new_blog') }}">
                         <i class="glyphicon glyphicon-chevron-right"></i>&nbsp; New Blog </a>
                     </li>
                      <li>
-                      <a href="List_blog.html">
+                      <a href="{{ URL::action('BlogController@list_blog') }}">
                         <i class="glyphicon glyphicon-chevron-right"></i>&nbsp; List Blog </a>
                     </li>
                   </ul>
@@ -203,11 +216,11 @@
                   </a>
                   <ul class="collapse">
                     <li>
-                      <a href="new_school.html">
+                      <a href="{{ URL::action('CollegeController@form_new_college') }}">
                         <i class="glyphicon glyphicon-chevron-right"></i>&nbsp; New College </a>
                     </li>
                      <li>
-                      <a href="list_school.html">
+                      <a href="{{ URL::action('CollegeController@list_college') }}">
                         <i class="glyphicon glyphicon-chevron-right"></i>&nbsp; List College </a>
                     </li>
                     
@@ -221,11 +234,11 @@
                   </a>
                   <ul class="collapse">
                     <li>
-                      <a href="new_product.html">
+                      <a href="{{ URL::action('ProductController@form_new_product') }}">
                         <i class="glyphicon glyphicon-chevron-right"></i>&nbsp; New Product </a>
                     </li>
                      <li>
-                      <a href="list_products.html">
+                      <a href="{{ URL::action('ProductController@list_product') }}">
                         <i class="glyphicon glyphicon-chevron-right"></i>&nbsp; List Products </a>
                     </li>
                     
@@ -240,11 +253,11 @@
                   </a>
                   <ul class="collapse">
                     <li>
-                      <a href="new_category.html">
+                      <a href="{{ URL::action('CategoryController@form_new_category') }}">
                         <i class="glyphicon glyphicon-chevron-right"></i>&nbsp; New Category </a>
                     </li>
                      <li>
-                      <a href="list_category.html">
+                      <a href="{{ URL::action('CategoryController@list_category') }}">
                         <i class="glyphicon glyphicon-chevron-right"></i>&nbsp; List Category </a>
                     </li>
                     
@@ -257,26 +270,52 @@
 @endif
 
 @yield('content')
-
+</div>
+  @if(Auth::check())
     <footer class="Footer bg-dark dker">
         <p>2017 &copy; Hype & Vice</p>
     </footer>
+  @endif  
 
-    <!--jQuery -->
-    <script src="assets/lib/jquery/jquery.js"></script>
-    <!--Bootstrap -->
-    <script src="assets/lib/bootstrap/js/bootstrap.js"></script>
+          <script src="{{asset('assets/lib/jquery/jquery.js')}}"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.5.10/ckeditor.js"></script>
+          <script src="{{asset('assets/js/jquery-ui.min.js')}}"></script>
+          <script src="{{asset('assets/js/jquery.validationEngine.min.js')}}"></script>
+          <script src="{{asset('assets/js/jquery.validationEngine-en.min.js')}}"></script>
 
-    <!-- JS -->
-    <script type="text/javascript" src="js/login.js"></script>
-    <!-- MetisMenu -->
-    <script src="assets/lib/metismenu/metisMenu.js"></script>     
-    <!-- Screenfull -->
-    <script src="assets/lib/screenfull/screenfull.js"></script>
-    <!-- Metis core scripts -->
-    <script src="assets/js/core.js"></script>
-    <!-- Metis demo scripts -->
-    <script src="assets/js/app.js"></script>
+            <!--Bootstrap -->
+            <script src="{{asset('assets/lib/bootstrap/js/bootstrap.js')}}"></script>
+            <!-- MetisMenu -->
+            <script src="{{asset('assets/lib/metismenu/metisMenu.js')}}"></script>
+            <!-- onoffcanvas -->
+            <script src="{{asset('assets/lib/onoffcanvas/onoffcanvas.js')}}"></script>
+            <!-- Screenfull -->
+            <script src="{{asset('assets/lib/screenfull/screenfull.js')}}"></script>
+
+                <script src="{{asset('assets/lib/jquery-validation/jquery.validate.js')}}"></script>
+
+                <script src="{{asset('assets/lib/plupload/js/plupload.full.min.js')}}"></script>
+                <script src="{{asset('assets/lib/plupload/js/jquery.plupload.queue/jquery.plupload.queue.min.js')}}"></script>
+                <script src="{{asset('assets/lib/jquery.gritter/js/jquery.gritter.min.js')}}"></script>
+                <script src="{{asset('assets/lib/formwizard/js/jquery.form.wizard.js')}}"></script>
+
+            <!-- Metis core scripts -->
+            <script src="{{asset('assets/js/core.js')}}"></script>
+            <!-- Metis demo scripts -->
+            <script src="{{asset('assets/js/app.js')}}"></script>
+
+            @if(isset($blog) && isset($category))
+              <script type="text/javascript">
+                  $(document).ready(function(){
+                      $("#list-category option[value={{$blog->category}}]").attr("selected",true);
+                  });
+              </script>
+            @endif
+                <script>
+                    $(function() {
+                      Metis.formValidation();
+                    });
+                </script>
 </body>
 
 </html>

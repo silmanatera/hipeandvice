@@ -10,12 +10,26 @@
     <hr>
     <div class="tab-content">
         <div id="login" class="tab-pane active">
+            <p>
+                @if(Session::get('danger'))
+                    <div id="danger" class="alert alert-danger">
+                      <strong>¡Error! </strong>{{Session::get('danger')}}
+                    </div>
+                @endif
+            </p> 
+            <p>
+                @if(Session::get('success'))
+                    <div class="alert alert-success" role="alert">
+                      <strong>¡Exito! </strong>{{Session::get('success')}}
+                    </div>
+                @endif
+            </p> 
             {{ Form::open(array('url' => 'validate-login', 'method' => 'post')) }}
                 <p class="text-muted text-center">
                     Enter your username and password
                 </p>
-                <input type="text" placeholder="Username" class="form-control top">
-                <input type="password" placeholder="Password" class="form-control bottom">
+                <input type="text" placeholder="Username" name="username" class="form-control top">
+                <input type="password" placeholder="Password" name="password" class="form-control bottom">
                 <div class="checkbox">
 		  
 		</div>

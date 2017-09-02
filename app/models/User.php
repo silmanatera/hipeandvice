@@ -23,4 +23,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $hidden = array('password', 'remember_token');
 
+	/************************************************************************
+     *   Funcion: 		get_list
+     *   Descripcion:   Retorn la lista de usuarios
+     ************************************************************************/
+	public static function get_list(){
+		return User::where('id', '!=', Auth::user()->id)->orderBy('id', 'asc')->paginate(10);
+	}
+
 }
