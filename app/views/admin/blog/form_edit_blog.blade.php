@@ -51,7 +51,7 @@
                                 @endif
                             </p> 
                             <div id="collapse2" class="body" style="margin-top: 4%">
-                            {{ Form::open(array('url' => '/admin/blog/modified/'.$blog->id, 'files' => true, 'class' => 'form-horizontal', 'id' => 'popup-validation', 'method' => 'post')) }}
+                            {{ Form::open(array('url' => '/admin/blog/modify/'.$blog->id, 'files' => true, 'class' => 'form-horizontal', 'id' => 'popup-validation', 'method' => 'post')) }}
                               <div class="form-group">
                                     <label class="control-label col-lg-3">Select</label>
                                     <div class="col-lg-6">

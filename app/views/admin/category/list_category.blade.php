@@ -14,10 +14,16 @@
                   <a class="quick-btn" href="#" style="font-size: 13px">
                     <i class="glyphicon glyphicon-import"></i>
                     <span>Registered</span>
-                    <span class="label label-success">456</span>
+                    <span class="label label-success">{{Category::get_total_register()}}</span>
                   </a>
                 </div>
-
+                <p>
+                    @if(Session::get('success'))
+                        <div class="alert alert-success" role="alert">
+                          <strong>¡Exito! </strong>{{Session::get('success')}}
+                        </div>
+                    @endif
+                </p> 
                 <div class="col-lg-12">
                   <div class="box">
                       <header>
@@ -42,85 +48,38 @@
                                   </tr>
                               </thead>
                               <tbody>
+                                @foreach($list as $category)
                                   <tr>
                                       <td>
-                                        BODYSUITS
+                                        {{$category->name}}
                                       </td>
-                                      <td><i class="glyphicon glyphicon-eye-open"></i> <a href="see_products.hml">See Products</a></td>
+                                      <td><i class="glyphicon glyphicon-eye-open"></i> <a href="<?=URL::to('/admin/category/see-products/'.$category->id) ?>">See Products</a></td>
                                       
                                       <td>
-                                        <a class="btn btn-success btn-sm close-box" title="edit category">
+                                        <a class="btn btn-success btn-sm close-box" href="<?=URL::to('/admin/category/edit/'.$category->id) ?>" title="edit category">
                                           <i class="glyphicon glyphicon-pencil"></i>
                                         </a>
-                                        <a class="btn btn-info btn-sm close-box" title="unpublish category">
+                                      @if($category->status == 1)
+                                        <a class="btn btn-info btn-sm close-box" href="<?=URL::to('/admin/category/change/2/'.$category->id) ?>" title="unpublish category">
                                           <i class="glyphicon glyphicon-off"></i>
                                         </a>
-                                        <a class="btn btn-danger btn-sm close-box" title="remove category">
+                                      @elseif($category->status == 2)
+                                        <a class="btn btn-info btn-sm close-box" href="<?=URL::to('/admin/category/change/1/'.$category->id) ?>" title="publish category">
+                                          <i class="glyphicon glyphicon-ok"></i>
+                                        </a>
+                                      @endif  
+                                        <a class="btn btn-danger btn-sm close-box" href="<?=URL::to('/admin/category/remove/'.$category->id) ?>" title="remove category">
                                           <i class="glyphicon glyphicon-remove"></i>
                                         </a>
                                       </td>
-                                      
                                   </tr>
-
-                                  <tr>
-                                      <td>
-                                        SKIRTS
-                                      </td>
-                                      <td><i class="glyphicon glyphicon-eye-open"></i> <a href="see_products.hml">See Products</a></td>
-                                      
-                                      <td>
-                                        <a class="btn btn-success btn-sm close-box" title="edit category">
-                                          <i class="glyphicon glyphicon-pencil"></i>
-                                        </a>
-                                        <a class="btn btn-info btn-sm close-box" title="unpublish category">
-                                          <i class="glyphicon glyphicon-off"></i>
-                                        </a>
-                                        <a class="btn btn-danger btn-sm close-box" title="remove category">
-                                          <i class="glyphicon glyphicon-remove"></i>
-                                        </a>
-                                      </td>
-                                      
-                                  </tr>
-
-                                  <tr>
-                                      <td>
-                                        KNIT TOPS
-                                      </td>
-                                      <td><i class="glyphicon glyphicon-eye-open"></i> <a href="see_products.hml">See Products</a></td>
-                                      
-                                      <td>
-                                        <a class="btn btn-success btn-sm close-box" title="edit category">
-                                          <i class="glyphicon glyphicon-pencil"></i>
-                                        </a>
-                                        <a class="btn btn-info btn-sm close-box" title="unpublish category">
-                                          <i class="glyphicon glyphicon-off"></i>
-                                        </a>
-                                        <a class="btn btn-danger btn-sm close-box" title="remove category">
-                                          <i class="glyphicon glyphicon-remove"></i>
-                                        </a>
-                                      </td>
-                                      
-                                  </tr>
+                                @endforeach  
                               </tbody> 
                           </table>
 
                           <nav aria-label="Page navigation" style="text-align: center">
                             <ul class="pagination">
-                              <li>
-                                <a href="#" aria-label="Previous">
-                                  <span aria-hidden="true">&laquo;</span>
-                                </a>
-                              </li>
-                              <li><a href="#">1</a></li>
-                              <li><a href="#">2</a></li>
-                              <li><a href="#">3</a></li>
-                              <li><a href="#">4</a></li>
-                              <li><a href="#">5</a></li>
-                              <li>
-                                <a href="#" aria-label="Next">
-                                  <span aria-hidden="true">&raquo;</span>
-                                </a>
-                              </li>
+                              {{$list->links()}}
                             </ul>
                           </nav>
                       </div>

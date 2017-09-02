@@ -13,7 +13,7 @@
                 <div class="col-lg-12">
                   <div class="box">
                       <header>
-                          <h5>New Category</h5>
+                          <h5>Edit Category</h5>
                           <div class="toolbar">
                               <div class="btn-group">
                                   <a href="#stripedTable" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
@@ -31,20 +31,13 @@
                                     </div>
                                 @endif
                             </p> 
-                            <p>
-                                @if(Session::get('success'))
-                                    <div class="alert alert-success" role="alert">
-                                      <strong>¡Exito! </strong>{{Session::get('success')}}
-                                    </div>
-                                @endif
-                            </p> 
                             <div id="collapse2" class="body" style="margin-top: 4%">
-                             {{ Form::open(array('url' => '/admin/category/register', 'class' => 'form-horizontal', 'id' => 'popup-validation', 'method' => 'post')) }}
+                             {{ Form::open(array('url' => '/admin/category/modify/'.$category->id, 'class' => 'form-horizontal', 'id' => 'popup-validation', 'method' => 'post')) }}
                               
                                 <div class="form-group">
                                     <label class="control-label col-lg-3">Name</label>
                                     <div class="col-lg-6">
-                                        <input type="text" class="validate[required] form-control" name="name" id="req">
+                                        <input type="text" class="validate[required] form-control" name="name" id="req" value="{{$category->name}}">
                                     </div>
                                 </div>
 
@@ -52,7 +45,7 @@
 
                                 <div class="form-actions no-margin-bottom" style="text-align: right">
                                     <input type="submit" value="Save" class="btn btn-metis-2 btn-lg btn-grad btn-rect">
-                                    <input type="button" onclick="window.open('<?=URL::to("/admin")?>','_top');" value="Cancel" class="btn btn-metis-1 btn-lg btn-grad btn-rect">
+                                    <input type="button" onclick="window.open('<?=URL::to("/admin/category/list")?>','_top');" value="Cancel" class="btn btn-metis-1 btn-lg btn-grad btn-rect">
                                 </div>
                             {{Form::close()}}
                         </div>

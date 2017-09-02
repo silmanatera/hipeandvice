@@ -28,4 +28,40 @@ class ProductController extends BaseController{
 		return View::make('admin/product/list_product');
 	}
 
+    /************************************************************************
+     *   Funcion:       form_edit
+     *   Descripcion:   Retorna el formulario de registro de productos
+     ************************************************************************/
+    public function form_edit($id){
+        if(Product::exist($id)){
+
+        }else{
+            return View::make('errors/404');
+        }
+    }
+
+    /************************************************************************
+     *   Funcion:       change_status
+     *   Descripcion:   Permite modificar los status de los productos
+     ************************************************************************/
+    public function change_status($id){
+        if(Product::exist($id)){
+
+        }else{
+            return View::make('errors/404');
+        }
+    }
+
+    /************************************************************************
+     *   Funcion:       remove
+     *   Descripcion:   Permite eliminar los productos
+     ************************************************************************/
+    public function remove($id){
+        if(Product::exist($id)){
+
+        }else{
+            return View::make('errors/404');
+        }
+    }
+
 }

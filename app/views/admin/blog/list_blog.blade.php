@@ -52,7 +52,7 @@
                                   <tr>
                                       <td>
                                         <a class="user-link" href="">
-                                          <img class="media-object img-thumbnail user-img" alt="User Picture" src="{{ asset('assets/uploads/'.$blog->image_route) }}">
+                                          <img class="media-object img-thumbnail user-img" alt="User Picture" src="{{ asset('uploads/'.$blog->image_route) }}">
                                         </a>
                                       </td>
                                       <td>{{$blog->title}}</td>
