@@ -17,7 +17,7 @@ class ProductController extends BaseController{
      *   Descripcion:   Redirecciona al formulario de registo de producto
      ************************************************************************/
 	public function form_new_product(){
-		return View::make('admin/product/form_product');
+		return View::make('admin/product/form_product'); 
 	}
 
 	/************************************************************************
@@ -61,6 +61,24 @@ class ProductController extends BaseController{
 
         }else{
             return View::make('errors/404');
+        }
+    }
+
+    /************************************************************************
+     *   Funcion:       save_product
+     *   Descripcion:   Registra un nuevo producto.
+     ************************************************************************/
+    public function save_product(){
+        $new_product = Product::register_new_product(Input::all());
+        
+        if($new_product['error'] == true){
+            Session::flash('danger', "Problemas Al registrar el Producto. Revise los campos obligatorios. Si el problema persiste cominiquese con soporte tectico !!");
+            return Redirect::back()->withErrors($new_product['mensaje'])->withInput();
+
+        }elseif($new_product['error'] == false){
+            //var_dump('no errore');exit();
+            Session::flash('success', "Al registrar su Producto.");
+            return Redirect::back();
         }
     }
 

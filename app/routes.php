@@ -47,6 +47,10 @@ Route::get('/terms','HomeController@terms');
 Route::get('/admin','HomeController@home_admin');
 // Aprueba o rechaza una compra 
 Route::get('/admin/change/{status}/{id}','PurchaseController@change_status');
+
+/*
+| 								Blog
+*/
 // Redirecciona al formulario de blog
 Route::get('/admin/blog/new','BlogController@form_new_blog');
 // Rediecciona al listado de los blogs
@@ -61,6 +65,11 @@ Route::get('/admin/blog/remove/{id}','BlogController@remove');
 Route::get('/admin/blog/edit/{id}','BlogController@form_edit');
 // Edita un blog
 Route::post('/admin/blog/modify/{id}','BlogController@edit_blog');
+
+/*
+| 								College
+*/
+
 // Redirecciona al formulario de colegio
 Route::get('/admin/college/new','CollegeController@form_new_college');
 // Rediecciona al listado de los colegios
@@ -77,10 +86,22 @@ Route::get('/admin/college/change/{status}/{id}','CollegeController@change_statu
 Route::get('/admin/college/remove/{id}','CollegeController@remove');
 // Modifica una escuela
 Route::post('/admin/college/modify/{id}','CollegeController@modify_college');
+
+/*
+| 								Product
+*/
+
 // Redirecciona al formulario de producto
 Route::get('/admin/poduct/new','ProductController@form_new_product');
+// Guarda nuevo producto
+Route::post('admin/product/save_product','ProductController@save_product');
 // Rediecciona al listado de los productos
 Route::get('/admin/product/list','ProductController@list_product');
+
+/*
+| 								Category
+*/
+
 // Redirecciona al formulario de categoria
 Route::get('/admin/category/new','CategoryController@form_new_category');
 // Rediecciona al listado de los categorias

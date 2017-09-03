@@ -20,13 +20,31 @@
                 </div>
 
                 <div class="col-lg-12">
+                  <p>
+                    @if(Session::get('danger'))
+                          <div id="danger" class="alert alert-danger">
+                            <strong>¡Error! </strong>{{Session::get('danger')}}
+                          </div>
+                      @endif
+                  </p> 
+                  <p>
+                    @if(Session::get('success'))
+                          <div class="alert alert-success" role="alert">
+                            <strong>¡Success! </strong>{{Session::get('success')}}
+                          </div>
+                      @endif
+                  </p> 
+                </div>
+
+                <div class="col-lg-12">
                   <div class="box">
                    <header>
                     <h5>New Product</h5>
                    </header>
                    
                   </div>
-                  <form class="form-horizontal" id="popup-validation">
+                  
+                  {{ Form::open(array('url' => 'admin/product/save_product', 'method' => 'post', 'id' => 'popup-validation','class' => 'form-horizontal')) }}
                   <!-- Informacion General del producto-->
                   <div class="box">
                       <header>
@@ -47,10 +65,10 @@
                           <div class="form-group">
                               <label class="control-label col-lg-3">College</label>
                               <div class="col-lg-6">
-                                  <select name="sport" id="sport" class="validate[required] form-control">
-                                      <option value="">Choose a College</option>
-                                      <option value="option1">Arizona</option>
-                                      <option value="option2">Berkeley</option>
+                                  <select name="college" id="college" class="validate[required] form-control">
+                                      <option value="0">Choose a College</option>
+                                      <option value="1">Arizona</option>
+                                      <option value="2">Berkeley</option>
                                       
                                   </select>
                               </div>
@@ -59,48 +77,73 @@
                           <div class="form-group">
                               <label class="control-label col-lg-3">Category</label>
                               <div class="col-lg-6">
-                                  <select name="sport" id="sport" class="validate[required] form-control">
-                                      <option value="">Choose a Category</option>
-                                      <option value="option1">BODYSUITS</option>
-                                      <option value="option2">SKIRTS</option>
-                                      <option value="option2">KNIT TOPS</option>
+                                  <select name="category" id="category" class="validate[required] form-control">
+                                      <option value="0">Choose a Category</option>
+                                      <option value="1">BODYSUITS</option>
+                                      <option value="2">SKIRTS</option>
+                                      <option value="3">KNIT TOPS</option>
                                   </select>
                               </div>
                           </div>
                           <div class="form-group">
                               <label class="control-label col-lg-3">Title</label>
                               <div class="col-lg-6">
-                                  <input type="text" class="validate[required] form-control" name="req" id="req">
+                                  <input type="text" class="validate[required] form-control" name="title" id="title" value="{{Input::old('title')}}">
+                                  @if($errors->has('title'))
+                                      @foreach($errors->get('title') as $error)
+                                          <label class="control-label texterror"><i class="fa fa-times-circle-o"></i>{{ $error }}</label>
+                                      @endforeach
+                                  @endif
                               </div>
                           </div>
 
                           <div class="form-group">
-                              <label for="text4" class="control-label col-lg-3">Short Resume</label>
+                              <label for="short_resume" class="control-label col-lg-3">Short Resume</label>
 
                               <div class="col-lg-6">
-                                  <textarea id="text4" class="form-control"></textarea>
+                                  <textarea id="short_resume" name="short_resume" class="form-control"></textarea>
+                                  @if($errors->has('short_resume'))
+                                      @foreach($errors->get('short_resume') as $error)
+                                          <label class="control-label texterror"><i class="fa fa-times-circle-o"></i>{{ $error }}</label>
+                                      @endforeach
+                                  @endif
                               </div>
                           </div>
 
                           <div class="form-group">
-                              <label for="text4" class="control-label col-lg-3">Medium Resume</label>
+                              <label for="medium_resume" class="control-label col-lg-3">Medium Resume</label>
 
                               <div class="col-lg-6">
-                                  <textarea id="text4" class="form-control"></textarea>
+                                  <textarea id="medium_resume" name="medium_resume" class="form-control"></textarea>
+                                  @if($errors->has('medium_resume'))
+                                      @foreach($errors->get('medium_resume') as $error)
+                                          <label class="control-label texterror"><i class="fa fa-times-circle-o"></i>{{ $error }}</label>
+                                      @endforeach
+                                  @endif
                               </div>
                           </div>
 
                           <div class="form-group">
                               <label class="control-label col-lg-3">Quantity available ?</label>
                               <div class="col-lg-6">
-                                  <input type="text" class="validate[required] form-control" name="req" id="req">
+                                  <input type="text" class="validate[required] form-control" name="quantity" id="quantity" value="{{Input::old('quantity')}}">
+                                  @if($errors->has('quantity'))
+                                      @foreach($errors->get('quantity') as $error)
+                                          <label class="control-label texterror"><i class="fa fa-times-circle-o"></i>{{ $error }}</label>
+                                      @endforeach
+                                  @endif
                               </div>
                           </div>
 
                           <div class="form-group">
                               <label class="control-label col-lg-3">Price $</label>
                               <div class="col-lg-6">
-                                  <input type="text" class="validate[required] form-control" name="req" id="req">
+                                  <input type="text" class="validate[required] form-control" name="price" id="price" value="{{Input::old('price')}}">
+                                  @if($errors->has('price'))
+                                      @foreach($errors->get('price') as $error)
+                                          <label class="control-label texterror"><i class="fa fa-times-circle-o"></i>{{ $error }}</label>
+                                      @endforeach
+                                  @endif
                               </div>
                           </div>
 
@@ -108,10 +151,10 @@
                             <label class="control-label col-lg-3">Publish?</label>
                             <div class="checkbox">
                                 <label>
-                                    <input class="uniform" type="radio" name="optionsRadios" value="option1" checked>Yes
+                                    <input class="uniform" type="radio" name="publish_yes" value="1" checked>Yes
                                 </label>
                                 <label>
-                                    <input class="uniform" type="radio" name="optionsRadios" value="option2">No
+                                    <input class="uniform" type="radio" name="publish_no" value="0">No
                                 </label>
                             </div>
 
@@ -122,7 +165,12 @@
                             <div class="col-lg-6">
                               
                                 <div class="body">
-                                   <textarea id="ckeditor" class="ckeditor"></textarea>
+                                   <textarea id="ckeditor" name="large_resume" class="ckeditor"></textarea>
+                                   @if($errors->has('large_resume'))
+                                      @foreach($errors->get('large_resume') as $error)
+                                          <label class="control-label texterror"><i class="fa fa-times-circle-o"></i>{{ $error }}</label>
+                                      @endforeach
+                                  @endif
                                 </div>
                               
                             </div>
@@ -150,7 +198,8 @@
                               <div class="form-group" style="margin-top:2%">
                                 <label class="control-label col-lg-3">Color hex format</label>
                                   <div class="col-lg-4">
-                                    <input type="text" class="validate[required] form-control" name="req" id="req">
+                                    <!-- <input type="text" class="validate[required] form-control" name="req" id="req"> -->
+                                    <input type="text" class="form-control" name="req" id="req">
                                   </div>
                               </div>
                               <div class="form-group">
@@ -215,7 +264,8 @@
                               <div class="form-group" style="margin-top:2%">
                                 <label class="control-label col-lg-3">Color hex format</label>
                                   <div class="col-lg-4">
-                                    <input type="text" class="validate[required] form-control" name="req" id="req">
+                                    <!-- <input type="text" class="validate[required] form-control" name="req" id="req"> -->
+                                    <input type="text" class="form-control" name="req" id="req">
                                   </div>
                               </div>
                               <div class="form-group">
@@ -291,14 +341,14 @@
                             <div id="collapse2" class="body" style="margin-top: 4%">
                             
                                 <div class="form-actions no-margin-bottom" style="text-align: right">
-                                    <input type="submit" value="Save" class="btn btn-metis-2 btn-lg btn-grad btn-rect">
+                                    <input type="submit" value="Save" name="send" class="btn btn-metis-2 btn-lg btn-grad btn-rect">
                                     <input type="submit" value="Cancel" class="btn btn-metis-1 btn-lg btn-grad btn-rect">
                                 </div>
                            
                         </div>
                       </div>
                 </div>
-                </form>
+                {{ Form::close() }}
 
               </div>
             </div>
