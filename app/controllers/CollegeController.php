@@ -38,12 +38,12 @@ class CollegeController extends BaseController{
 
         if($reg_coll['error'] == true){
 
-            Session::flash('danger', "Problemas Al registrar..");
+            Session::flash('danger', "Problems registering..");
             return Redirect::back()->withErrors($reg_coll['mensaje'])->withInput();
 
         }elseif($reg_coll['error'] == false){
 
-            Session::flash('success', "Al registrar el college.");
+            Session::flash('success', "To register your college.");
             return Redirect::back();
         }
     }
@@ -88,9 +88,9 @@ class CollegeController extends BaseController{
             $result = College::change_status($status, $id);
 
             if($result == 1){
-                Session::flash('success', "Al publicar la escuela.");
+                Session::flash('success', "By posting the college.");
             }elseif($result == 2){
-                Session::flash('success', "Al cerrar la escuela.");
+                Session::flash('success', "When closing the college.");
             }
             
             return Redirect::back();
@@ -111,12 +111,12 @@ class CollegeController extends BaseController{
 
             if($edit_coll['error'] == true){
 
-                Session::flash('danger', "Problemas Al registrar..");
+                Session::flash('danger', "Problems Updating..");
                 return Redirect::back()->withErrors($edit_coll['mensaje'])->withInput();
 
             }elseif($edit_coll['error'] == false){
 
-                Session::flash('success', "Al modificar la escuela.");
+                Session::flash('success', "Updating the college.");
                 return Redirect::to('/admin/college/list');
             }
 
@@ -133,7 +133,7 @@ class CollegeController extends BaseController{
         if(College::exist($id)){
 
             College::remove($id);
-            Session::flash('success', "Al eliminar la escuela.");
+            Session::flash('success', "Removing the college.");
             return Redirect::back();
 
         }else{

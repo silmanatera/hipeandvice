@@ -75,6 +75,7 @@ class College extends Eloquent{
         }else {
 
             try {
+                DB::beginTransaction();
 				
                 $college              	   = New College();
                 $college->user_id          = Auth::user()->id;
@@ -149,6 +150,7 @@ class College extends Eloquent{
         }else {
 
             try {
+                DB::beginTransaction();
 				
                 $college              	   = College::find($id);
                 $college->name             = $inputs['name'];

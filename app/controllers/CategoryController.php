@@ -38,12 +38,12 @@ class CategoryController extends BaseController {
 
         if($reg_cat['error'] == true){
 
-            Session::flash('danger', "Problemas Al registrar..");
+            Session::flash('danger', "Problems registering..");
             return Redirect::back()->withErrors($reg_cat['mensaje'])->withInput();
 
         }elseif($reg_cat['error'] == false){
 
-            Session::flash('success', "Al registrar la categoria.");
+            Session::flash('success', "To register your category.");
             return Redirect::back();
         }
     }
@@ -88,9 +88,9 @@ class CategoryController extends BaseController {
             $result = Category::change_status($status, $id);
 
             if($result == 1){
-                Session::flash('success', "Al publicar la categoria.");
+                Session::flash('success', "By posting the category.");
             }elseif($result == 2){
-                Session::flash('success', "Al cerrar la categoria.");
+                Session::flash('success', "When closing the category.");
             }
             
             return Redirect::back();
@@ -111,12 +111,12 @@ class CategoryController extends BaseController {
 
             if($edit_cat['error'] == true){
 
-                Session::flash('danger', "Problemas Al registrar..");
+                Session::flash('danger', "Problems Updating..");
                 return Redirect::back()->withErrors($edit_cat['mensaje'])->withInput();
 
             }elseif($edit_cat['error'] == false){
 
-                Session::flash('success', "Al modificar la categoria.");
+                Session::flash('success', "Updating the category.");
                 return Redirect::to('/admin/category/list');
             }
 
@@ -133,7 +133,7 @@ class CategoryController extends BaseController {
         if(Category::exist($id)){
 
             Category::remove($id);
-            Session::flash('success', "Al eliminar la categoria.");
+            Session::flash('success', "Removing the category.");
             return Redirect::back();
 
         }else{

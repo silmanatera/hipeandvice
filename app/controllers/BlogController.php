@@ -39,12 +39,12 @@ class BlogController extends BaseController{
 
         if($reg_blog['error'] == true){
 
-            Session::flash('danger', "Problemas Al registrar..");
+            Session::flash('danger', "Problems registering..");
             return Redirect::back()->withErrors($reg_blog['mensaje'])->withInput();
 
         }elseif($reg_blog['error'] == false){
 
-            Session::flash('success', "Al registrar el blog.");
+            Session::flash('success', "To register your blog.");
             return Redirect::back();
         }
     }
@@ -57,9 +57,9 @@ class BlogController extends BaseController{
         $publish = Blog::publish($id);
 
         if($publish){
-            Session::flash('success', "Al publicar el blog.");
+            Session::flash('success', "By posting the blog.");
         }else{
-            Session::flash('success', "Al cerrar el blog.");
+            Session::flash('success', "When closing the blog.");
         }
         
         return Redirect::back();
@@ -92,12 +92,12 @@ class BlogController extends BaseController{
 
         if($edit_blog['error'] == true){
 
-            Session::flash('danger', "Problemas Al actualizar.");
+            Session::flash('danger', "Problems Updating.");
             return Redirect::to('/admin/blog/edit/'.$id)->withErrors($edit_blog['mensaje'])->withInput();
 
         }elseif($edit_blog['error'] == false){
 
-            Session::flash('success', "Al actualizar el blog.");
+            Session::flash('success', "Updating the blog.");
             return Redirect::to('/admin/blog/list');
         }
     }

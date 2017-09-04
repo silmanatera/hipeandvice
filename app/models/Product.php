@@ -10,7 +10,28 @@ class Product extends Eloquent{
      *   Descripcion:   Retorna lista de productos por categorias 
      ************************************************************************/
 	public static function get_by_category($id){
-		return Product::where('category_id', '=', $id)->orderBy('id', 'asc')->paginate(10);
+		try{
+
+            DB::beginTransaction();
+
+            $result = Product::where('category_id', '=', $id)->orderBy('id', 'asc')->paginate(10);
+
+            DB::commit();
+
+			return $result;
+
+		}catch(\Exception $e){
+
+            DB::rollback();
+
+            $errores                =   New ErrorIncidence();
+            $errores->script        =   "Product";
+            $errores->funcion       =   "get_by_category";
+            $errores->codigo        =   $e->getCode();
+            $errores->linea         =   $e->getLine();
+            $errores->descripcion   =   $e->getMessage();
+            $errores->save();
+        }
 	}
 
 	/************************************************************************
@@ -18,7 +39,28 @@ class Product extends Eloquent{
      *   Descripcion:   Indica si un producto existe
      ************************************************************************/
 	public static function exist($id){
-		return (is_null(Product::find($id)))? false : true ;
+		try{
+
+            DB::beginTransaction();
+
+            $result = (is_null(Product::find($id)))? false : true ;
+
+            DB::commit();
+
+			return $result;
+
+		}catch(\Exception $e){
+
+            DB::rollback();
+
+            $errores                =   New ErrorIncidence();
+            $errores->script        =   "Product";
+            $errores->funcion       =   "exist";
+            $errores->codigo        =   $e->getCode();
+            $errores->linea         =   $e->getLine();
+            $errores->descripcion   =   $e->getMessage();
+            $errores->save();
+        }
 	}
 
 }

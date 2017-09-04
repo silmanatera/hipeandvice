@@ -21,9 +21,9 @@ class PurchaseController extends BaseController{
             $result = Purchase::change_status($status, $id);
 
             if($result == 1){
-                Session::flash('success', "Al aprobar la compra.");
+                Session::flash('success', "When approving the purchase.");
             }elseif($result == 2){
-                Session::flash('success', "Al rechazar la compra.");
+                Session::flash('success', "Refusing to buy.");
             }
 
             return Redirect::back();

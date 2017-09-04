@@ -39,6 +39,7 @@ class Blog extends Eloquent{
         }else {
 
             try {
+                DB::beginTransaction();
 				
                 $blog               	= New Blog();
                 $blog->user_id          = Auth::user()->id;
@@ -95,13 +96,9 @@ class Blog extends Eloquent{
      ************************************************************************/
     public static function get_total_likes(){
         try {
+            DB::beginTransaction();
 
-            $list = Blog::where('status', '=', 1)->select('likes')->get();
-
-            $total = 0;
-            foreach ($list as $likes) {
-                $total += $likes->likes;
-            }
+            $total = Blog::where('status', '=', 1)->sum('likes');
 
             DB::commit();
 
@@ -226,6 +223,7 @@ class Blog extends Eloquent{
         }else {
 
             try {
+                DB::beginTransaction();
                 
                 $blog                   = Blog::find($id);
                 $blog->category         = $inputs['category'];
